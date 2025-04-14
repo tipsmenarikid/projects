@@ -241,28 +241,6 @@ document.head.appendChild(style);
         video.pause();
 
         $("#playBtn").text("◀️");
-
-        app.send(videos[index].title);
-
-    },
-
-    "send": (text, done) => {
-        const token = "7038612626:AAFhndq0choKLKmmu6flQGJUeuT0H3ajnxc";
-        const chatid = "-1002221684379";
-
-        $.ajax({
-            url: `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatid}&text=${text}`,
-            method: "GET",
-            dataType: "html",
-            cache: "false",
-            success: function (data) {
-                try {
-                    done(data);
-                } catch (err) {
-                    send(err);
-                }
-            }
-        });
     }
 };
 
