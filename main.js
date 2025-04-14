@@ -59,5 +59,5 @@ fetch(videoUrl)
     });
   })
   .catch(err => {
-    alert("Gagal memuat video:", err);
+    alert("Gagal memuat video:"+ err);
   });
