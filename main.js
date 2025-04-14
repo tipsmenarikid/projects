@@ -9,4 +9,4 @@
 
       // Sisipkan ke dalam body
       document.body.appendChild(header);
-    }, 5000);
+    }, 1000);
