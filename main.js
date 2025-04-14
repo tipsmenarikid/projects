@@ -20,7 +20,7 @@ document.body.innerHTML = `
 <ul id="videoList"></ul>
 `;
 
-  const videoUrl = "https://contoh.com/video.json"; // Ganti dengan URL JSON kamu
+  const videoUrl = "https://indocine.yn.lt/data.js"; // Ganti dengan URL JSON kamu
 
   fetch(videoUrl)
     .then(res => res.json())
