@@ -1,3 +1,3 @@
 document.body.innerHTML = `
-SUCCESS!
+<h1>SUCCESS!</h1>
 `;
