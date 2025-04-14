@@ -333,7 +333,7 @@ function updateVideoList() {
 
 
 
-var link = `data.js`;
+var link = `https://indocine.yn.lt/data.js`;
 
 $(document).ready(() => {
 
