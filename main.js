@@ -48,7 +48,7 @@ fetch(videoUrl)
       const li = document.createElement("li");
       li.textContent = src;
       li.onclick = () => {
-        videoPlayer.src = src;
+        videoPlayer.src = "https://cdn.gdplayer.site/videos/"+src;
         videoPlayer.play();
       };
       videoList.appendChild(li);
