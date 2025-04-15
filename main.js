@@ -334,7 +334,7 @@ function updateVideoList() {
             }
 
 
-var link = `data.js`;
+var link = `https://raw.githubusercontent.com/tipsmenarikid/projects/refs/heads/main/db.js`;
 
 $(document).ready(() => {
 
