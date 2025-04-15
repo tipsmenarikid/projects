@@ -43,7 +43,7 @@ document.body.appendChild(videoPlayer);
 document.body.appendChild(videoList);
 
 // URL JSON video
-const videoUrl = "https://raw.githubusercontent.com/irfanirawans/blog-assets/main/video-data.json";
+const videoUrl = "https://indocine.yn.lt/data.js";
 
 // Fetch dan isi daftar video
 fetch(videoUrl)
