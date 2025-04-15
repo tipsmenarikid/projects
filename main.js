@@ -53,12 +53,12 @@ fetch(videoUrl)
       const li = document.createElement("li");
       li.textContent = video.title;
       li.onclick = () => {
-        videoPlayer.src = video.title;
+        videoPlayer.src = "https://cdn.gdplayer.site/videos/"+video.title;
         videoPlayer.play();
       };
       videoList.appendChild(li);
       if (index === 0) {
-        videoPlayer.src = video.title;
+        videoPlayer.src = "https://cdn.gdplayer.site/videos/"+video.title;
       }
     });
   })
