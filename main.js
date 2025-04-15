@@ -43,7 +43,7 @@ document.body.appendChild(videoPlayer);
 document.body.appendChild(videoList);
 
 // URL JSON video
-const videoUrl = "https://cindo-bocil.yn.lt/db.js";
+const videoUrl = "https://raw.githubusercontent.com/tipsmenarikid/projects/refs/heads/main/db.js";
 
 // Fetch dan isi daftar video
 fetch(videoUrl)
