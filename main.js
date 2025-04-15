@@ -8,21 +8,11 @@
     callback();
   }
 })(function () {
+
 var videos = [];
 var id = null;
 var index = localStorage.getItem("index");
 var display = 0;
-
-var directLink = [
-""
-];
-
-function openLink(){
-var randomIndex = Math.floor(Math.random() * directLink.length);
-var randomLink = directLink[randomIndex];
-
-window.open(randomLink, "_blank");
-}
 
 
 var app = {
@@ -56,7 +46,7 @@ var app = {
 
         #video-container {
             position: fixed;
-            top: 0;
+            top: 44px;
             left: 0;
             width: 100%;
             background: #000;
@@ -71,7 +61,7 @@ var app = {
 
         #controls-overlay {
             position: absolute;
-            top: 27%;
+            top: 25%;
             left: 0;
             width: 100%;
             display: none;
@@ -123,7 +113,7 @@ var app = {
 
         .video-list {
             position: absolute;
-            top: 280px;
+            top: 360px;
             width: 95%;
             margin-top: 20px;
             background: black;
@@ -147,11 +137,22 @@ var app = {
             background-color: #007bff;
             color: white;
         }
+
+        #joinBtn{
+            font-weight: bold;
+            font-size: 16px;
+            padding: 8px;
+            border: none;
+        }
         `;
 
 document.head.appendChild(style);
 
+
         var body = `
+
+<div id="header" class="front"><span id="title">INDOCINE</span></div>
+
         <div id="video-container">
             <center>
                 <video id="video">
@@ -171,25 +172,36 @@ document.head.appendChild(style);
                     <button id="fullscreenBtn">[ &nbsp;]</button>
                 </div>
 
+                <div id="wait">
+                    <span id="waitText"><button id="joinBtn"> >> JOIN OUR TELEGRAM << </button></span><br><br>
+                </div>
             </center>
         </div>
 
         <div class="video-list">
             <div id="video-list"></div>
-            <br>
-            <div id="container-a13128cc766c267e506b1c53c7e8f76a">
-            </div>
 
+            <br>
+         <center>
+
+<script async="async" data-cfasync="false" src="https://pl25241829.profitablecpmrate.com/a13128cc766c267e506b1c53c7e8f76a/invoke.js"></script>
+<div id="container-a13128cc766c267e506b1c53c7e8f76a"></div>
+
+            <div data-banner-id="6052867"></div>
+
+         </center>
 
 <div id="footer">
 <center>
 <hr>
-<b>&copy; Asupan Bochiel - ${new Date().getFullYear()}</b>
+<b>&copy; INDOCINE - ${new Date().getFullYear()}</b>
 </center><br>
 </div>
 
         </div>
+
         `;
+
 
         $("body").html(body);
 
@@ -204,7 +216,7 @@ document.head.appendChild(style);
             document.getElementById("currTime").textContent = formatTime(currTime);
 
             if (currTime === video.duration) {
-                showControls();
+                $("#video").click();
             }
 
             updateSlider();
@@ -234,7 +246,8 @@ document.head.appendChild(style);
 
     "load": (index) => {
 
-  localStorage.setItem("index", index);
+        localStorage.setItem("index", index);
+        video.pause();
 
         const videoURL = videos[index].title;
         video.src = "https://cdn.gdplayer.site/videos/" + videoURL;
@@ -244,7 +257,10 @@ document.head.appendChild(style);
         showControls();
         updateVideoList();
 
+//        video.pause();
+
         $("#playBtn").text("◀️");
+
     }
 };
 
@@ -279,16 +295,8 @@ function createVideoList(id) {
         videoItem.classList.add('video-item');
         videoItem.addEventListener('click', () => {
 
-          if(i === (videos.length-1)){
-            location.href = "https://t.me/bokepid_wiki";
-          } else {
             index = i;
             app.load(index);
-/*
-            localStorage.setItem("index", i);
-            location.reload();
-*/
-         }
 
         });
         videoList.appendChild(videoItem);
@@ -322,19 +330,10 @@ function updateVideoList() {
             }
 
 
+
 var link = `https://raw.githubusercontent.com/tipsmenarikid/projects/refs/heads/main/db.js`;
 
 $(document).ready(() => {
-
-    // URL Apps Script
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbzOfJUjKMg3csWCByJmoPKCzxMo35sj1Eg6oAVq3uaMHIgiiOs0jz4NjDWesZUmMWFR/exec";
-
-    // Kirim permintaan untuk mencatat pengunjung harian
-    fetch(scriptUrl)
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error("Gagal mencatat pengunjung:", error));
-
 
     $.ajax({
         url: link,
@@ -346,7 +345,18 @@ $(document).ready(() => {
             app.start();
 
             $("#video").click(() => {
-                  showControls();
+                if (display == 1) {
+                    $("#controls-overlay").hide();
+                    display = 0;
+                } else {
+                    $("#controls-overlay").show();
+                    display = 1;
+
+                    setTimeout(() => {
+                        $("#controls-overlay").hide();
+                        display = 0;
+                    }, 5000);
+                }
             });
 
             if(!index){
@@ -369,8 +379,9 @@ $(document).ready(() => {
             });
 
 
-$("#wait, #vipBtn, #download").click(() => {
-//openLink();
+
+$("#joinBtn").click(function(){
+window.open("https://t.me/bokep_bocil_esde", "_blank");
 });
 
 
@@ -380,6 +391,7 @@ $("#wait, #vipBtn, #download").click(() => {
         error: function () {
             alert(`Error!`);
         }
+        });
     });
-});
+
 });
