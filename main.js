@@ -41,7 +41,7 @@
         }
         video {
           width: 100%;
-          height: auto;
+          height: 240px;
           background: black;
         }
         #controls-overlay {
