@@ -184,7 +184,7 @@ document.head.appendChild(style);
 <div id="footer">
 <center>
 <hr>
-<b>&copy; INDOCINE - ${new Date().getFullYear()}</b>
+<b>&copy; Asupan Bochiel - ${new Date().getFullYear()}</b>
 </center><br>
 </div>
 
