@@ -1,3 +1,13 @@
+(function loadJQuery(callback) {
+  if (typeof window.jQuery === "undefined") {
+    var script = document.createElement("script");
+    script.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+    script.onload = callback;
+    document.head.appendChild(script);
+  } else {
+    callback();
+  }
+})(function () {
 var videos = [];
 var id = null;
 var index = parseInt(localStorage.getItem("index")) || 0;
@@ -227,4 +237,5 @@ $(document).ready(() => {
     },
     error: () => alert("Error!")
   });
+});
 });
