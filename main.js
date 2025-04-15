@@ -1,30 +1,67 @@
-document.body.innerHTML = `
-  <video id="videoPlayer" controls autoplay></video>
-  <ul id="videoList"></ul>
-`;
-
+// Tambahkan elemen <style> ke <head>
 const style = document.createElement("style");
 style.textContent = `
-  video { width: 100%; max-width: 600px; margin-bottom: 10px; background: #000; }
-  li { cursor: pointer; padding: 8px; background: #eee; margin: 5px 0; }
+  body {
+    font-family: sans-serif;
+    background: #f0f0f0;
+    padding: 10px;
+    margin: 0;
+  }
+  video {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 10px;
+    background: #000;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    padding: 8px;
+    margin: 5px 0;
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  li:hover {
+    background: #e0e0e0;
+  }
 `;
 document.head.appendChild(style);
 
-const videos = [
-  { title: "https://www.w3schools.com/html/mov_bbb.mp4" }, // video online aman
-  { title: "https://www.w3schools.com/html/movie.mp4" }
-];
+// Tambahkan elemen <video> dan <ul> ke <body>
+const videoPlayer = document.createElement("video");
+videoPlayer.id = "videoPlayer";
+videoPlayer.controls = true;
+videoPlayer.autoplay = true;
 
-const videoPlayer = document.getElementById("videoPlayer");
-const videoList = document.getElementById("videoList");
+const videoList = document.createElement("ul");
+videoList.id = "videoList";
 
-videos.forEach((video, index) => {
-  const li = document.createElement("li");
-  li.textContent = video.title;
-  li.onclick = () => {
-    videoPlayer.src = video.title;
-    videoPlayer.play();
-  };
-  videoList.appendChild(li);
-  if (index === 0) videoPlayer.src = video.title;
-});
+document.body.appendChild(videoPlayer);
+document.body.appendChild(videoList);
+
+// URL JSON video
+const videoUrl = "https://raw.githubusercontent.com/irfanirawans/blog-assets/main/video-data.json";
+
+// Fetch dan isi daftar video
+fetch(videoUrl)
+  .then(res => res.json())
+  .then(videos => {
+    videos.forEach((video, index) => {
+      const li = document.createElement("li");
+      li.textContent = video.title;
+      li.onclick = () => {
+        videoPlayer.src = video.title;
+        videoPlayer.play();
+      };
+      videoList.appendChild(li);
+      if (index === 0) {
+        videoPlayer.src = video.title;
+      }
+    });
+  })
+  .catch(err => {
+    console.error("Gagal memuat video:", err);
+  });
