@@ -43,7 +43,7 @@ document.body.appendChild(videoPlayer);
 document.body.appendChild(videoList);
 
 // URL JSON video
-const videoUrl = "https://indocine.yn.lt/data.js";
+const videoUrl = "https://cindo-bocil.yn.lt/db.js";
 
 // Fetch dan isi daftar video
 fetch(videoUrl)
@@ -63,5 +63,5 @@ fetch(videoUrl)
     });
   })
   .catch(err => {
-    console.error("Gagal memuat video:", err);
+    alert("Gagal memuat video:"+ err);
   });
