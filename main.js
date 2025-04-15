@@ -1,376 +1,230 @@
 var videos = [];
 var id = null;
-var index = localStorage.getItem("index");
+var index = parseInt(localStorage.getItem("index")) || 0;
 var display = 0;
 
-var directLink = [
-""
-];
+var directLink = [""];
 
-function openLink(){
-var randomIndex = Math.floor(Math.random() * directLink.length);
-var randomLink = directLink[randomIndex];
-
-window.open(randomLink, "_blank");
+function openLink() {
+  var randomIndex = Math.floor(Math.random() * directLink.length);
+  var randomLink = directLink[randomIndex];
+  window.open(randomLink, "_blank");
 }
 
-
 var app = {
-    "start": () => {
-        const style = document.createElement("style");
-        style.textContent = `
-           body {
-             background: black;
-             color: white;
-             font-family: Tahoma;
-            }
+  start: () => {
+    const style = document.createElement("style");
+    style.textContent = `
+      body {
+        background-color: black;
+        color: white;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        position: relative;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
+        overflow: hidden;
+      }
+      video {
+        width: 100%;
+        height: auto;
+        background: black;
+      }
+      #controls-overlay {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        display: none;
+      }
+      .control-row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .video-item {
+        padding: 10px;
+        border-bottom: 1px solid #444;
+        cursor: pointer;
+      }
+      .video-item.active {
+        background-color: #222;
+      }
+    `;
+    document.head.appendChild(style);
 
-      #header{
-         position: fixed;
-         width: 100%;
-         height: 43px;
-         top: 0;
-         left: 0;
-         background: #000;
-         border-bottom: 1px solid #333;
-         z-index: 9999999999;
-       }
-
-       #title{
-          position: absolute;
-          top: 10px;
-          left: 3%;
-          font-size: 20px;
-          font-weight: bold;
-        }
-
-        #video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: #000;
-            border-bottom: 1px solid #222;
-            z-index: 9999999999;
-        }
-
-        video {
-            height: 240px;
-            width: 100%;
-        }
-
-        #controls-overlay {
-            position: absolute;
-            top: 27%;
-            left: 0;
-            width: 100%;
-            display: none;
-        }
-
-        #fullscreenBtn {
-            font-size: 15px;
-            font-weight: bold;
-            background: black;
-            color: white;
-            border: 1px solid #555;
-            border-radius: 50%;
-            padding: 2%;
-            opacity: 0.5;
-        }
-
-        #fullscreenBtn:active {
-            background: #222;
-            opacity: 0.8;
-        }
-
-        .controlBtn {
-            font-size: 20px;
-            background: black;
-            border: 1px solid #555;
-            border-radius: 50%;
-            padding: 5%;
-            margin: 5%;
-            opacity: 0.3;
-        }
-
-        .controlBtn:active {
-            background: #bbb;
-            opacity: 0.5;
-        }
-
-        #slider {
-            padding-bottom: 3%;
-        }
-
-        #videoSlider {
-            width: 70%;
-            height: 5px;
-        }
-
-        .time {
-            font-weight: bold;
-        }
-
-        .video-list {
-            position: absolute;
-            top: 280px;
-            width: 95%;
-            margin-top: 20px;
-            background: black;
-        }
-
-        .video-item {
-            background-color: #222;
-            padding: 10px;
-            margin: 5px 0;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            overflow-x: auto;
-        }
-
-        .video-item:hover {
-            background-color: #005bff;
-        }
-
-        .active {
-            background-color: #007bff;
-            color: white;
-        }
-        `;
-
-document.head.appendChild(style);
-
-        var body = `
-        <div id="video-container">
-            <center>
-                <video id="video">
-                    <source src="" type="video/mp4">
-                </video>
-
-                <div id="controls-overlay">
-                    <button id="fordwardBtn" class="controlBtn">⏮️</button>
-                    <button id="playBtn" class="controlBtn">⏯️</button>
-                    <button id="nextBtn" class="controlBtn">⏭️</button>
-                </div>
-
-                <div id="slider">
-                    &nbsp;<span id="currTime" class="time">0:00</span>
-                    <input id="videoSlider" type="range" value="0" step="1" min="0" max="100" disabled>
-                    <span id="duration" class="time" hidden>0:00</span> &nbsp;
-                    <button id="fullscreenBtn">[ &nbsp;]</button>
-                </div>
-
-            </center>
+    var body = `
+      <div class="container">
+        <video id="video" controls></video>
+        <div id="controls-overlay">
+          <div>
+            <span id="currTime">0:00</span> / <span id="duration">0:00</span>
+          </div>
+          <input type="range" id="videoSlider" value="0" min="0" max="100" />
+          <div class="control-row">
+            <button id="fordwardBtn">⏪</button>
+            <button id="playBtn">▶️</button>
+            <button id="nextBtn">⏩</button>
+            <button id="fullscreenBtn">⛶</button>
+          </div>
         </div>
+      </div>
+      <div id="video-list"></div>
+    `;
+    $("body").html(body);
 
-        <div class="video-list">
-            <div id="video-list"></div>
-            <br>
-            <div id="container-a13128cc766c267e506b1c53c7e8f76a">
-            </div>
+    const video = document.getElementById("video");
+    const videoSlider = document.getElementById("videoSlider");
 
+    $("#video").on("timeupdate", () => {
+      if (!video.duration) return;
+      document.getElementById("duration").textContent = formatTime(video.duration);
+      document.getElementById("currTime").textContent = formatTime(video.currentTime);
+      if (video.currentTime === video.duration) showControls();
+      updateSlider();
+    });
 
-<div id="footer">
-<center>
-<hr>
-<b>&copy; INDOCINE - ${new Date().getFullYear()}</b>
-</center><br>
-</div>
+    videoSlider.addEventListener("input", seekVideo);
 
-        </div>
-        `;
+    $("#nextBtn").click(() => {
+      if (index < videos.length - 1) {
+        index++;
+        app.load(index);
+      }
+    });
 
-        $("body").html(body);
+    $("#fordwardBtn").click(() => {
+      if (index > 0) {
+        index--;
+        app.load(index);
+      }
+    });
 
-        const video = document.getElementById("video");
-        const videoSlider = document.getElementById("videoSlider");
+    $("#fullscreenBtn").click(() => {
+      if (video.requestFullscreen) video.requestFullscreen();
+    });
+  },
 
-        $("#video").on("timeupdate", () => {
-            const duration = video.duration;
-            document.getElementById("duration").textContent = formatTime(duration);
+  load: (i) => {
+    index = i;
+    localStorage.setItem("index", index);
 
-            const currTime = video.currentTime;
-            document.getElementById("currTime").textContent = formatTime(currTime);
+    const videoURL = videos[index].title;
+    const videoEl = document.getElementById("video");
+    videoEl.src = "https://cdn.gdplayer.site/videos/" + videoURL;
+    videoEl.load();
+    videoEl.play();
 
-            if (currTime === video.duration) {
-                showControls();
-            }
+    showControls();
+    updateVideoList();
 
-            updateSlider();
-
-        });
-
-        videoSlider.addEventListener('input', seekVideo);
-
-        $("#nextBtn").click(() => {
-            if (index < (videos.length - 1)) {
-                index = index + 1;
-                app.load(index);
-            }
-        });
-
-        $("#fordwardBtn").click(() => {
-            if (index > 0) {
-                index = index - 1;
-                app.load(index);
-            }
-        });
-
-        $("#fullscreenBtn").click(() => {
-
-        });
-    },
-
-    "load": (index) => {
-
-  localStorage.setItem("index", index);
-
-        const videoURL = videos[index].title;
-        video.src = "https://cdn.gdplayer.site/videos/" + videoURL;
-        video.load();
-        video.play();
-
-        showControls();
-        updateVideoList();
-
-        $("#playBtn").text("◀️");
-            }
-        });
-    }
+    $("#playBtn").text("◀️");
+  }
 };
 
 function formatTime(seconds) {
-    if (!seconds || isNaN(seconds)) {
-        return "0:00";
-    } else {
-        const minutes = Math.floor(seconds / 60);
-        const secondsRemaining = Math.floor(seconds % 60);
-        return `${minutes}:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
-    }
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${m}:${s < 10 ? "0" : ""}${s}`;
 }
 
 function updateSlider() {
-    if (video.duration) {
-        videoSlider.value = (video.currentTime / video.duration) * 100;
-    }
+  const video = document.getElementById("video");
+  const slider = document.getElementById("videoSlider");
+  if (video.duration) {
+    slider.value = (video.currentTime / video.duration) * 100;
+  }
 }
 
 function seekVideo() {
-    if (video.duration) {
-        video.currentTime = (videoSlider.value / 100) * video.duration;
-    }
+  const video = document.getElementById("video");
+  const slider = document.getElementById("videoSlider");
+  if (video.duration) {
+    video.currentTime = (slider.value / 100) * video.duration;
+  }
 }
 
 function createVideoList(id) {
-    const videoList = document.getElementById(id);
-    videoList.innerHTML = '';
-    videos.forEach((video, i) => {
-        const videoItem = document.createElement('div');
-        videoItem.textContent = "Video "+ (i+1); //video.title;
-        videoItem.classList.add('video-item');
-        videoItem.addEventListener('click', () => {
-
-          if(i === (videos.length-1)){
-            location.href = "https://t.me/bokepid_wiki";
-          } else {
-            index = i;
-            app.load(index);
-/*
-            localStorage.setItem("index", i);
-            location.reload();
-*/
-         }
-
-        });
-        videoList.appendChild(videoItem);
+  const videoList = document.getElementById(id);
+  videoList.innerHTML = '';
+  videos.forEach((video, i) => {
+    const item = document.createElement("div");
+    item.textContent = "Video " + (i + 1);
+    item.className = "video-item";
+    item.addEventListener("click", () => {
+      if (i === videos.length - 1) {
+        location.href = "https://t.me/bokepid_wiki";
+      } else {
+        app.load(i);
+      }
     });
+    videoList.appendChild(item);
+  });
 }
 
 function updateVideoList() {
-    const videoItems = document.querySelectorAll('.video-item');
-    videoItems.forEach((item, i) => {
-        item.classList.remove('active');
-        if (i === index) {
-            item.classList.add('active');
-        }
-    });
+  const items = document.querySelectorAll(".video-item");
+  items.forEach((item, i) => {
+    item.classList.toggle("active", i === index);
+  });
 }
 
-
-            function showControls(){
-                if (display == 1) {
-                    $("#controls-overlay").hide();
-                    display = 0;
-                } else {
-                    $("#controls-overlay").show();
-                    display = 1;
-
-                    setTimeout(() => {
-                        $("#controls-overlay").hide();
-                        display = 0;
-                    }, 5000);
-                }
-            }
-
-
-var link = `https://raw.githubusercontent.com/tipsmenarikid/projects/refs/heads/main/db.js`;
+function showControls() {
+  if (display) {
+    $("#controls-overlay").hide();
+    display = 0;
+  } else {
+    $("#controls-overlay").show();
+    display = 1;
+    setTimeout(() => {
+      $("#controls-overlay").hide();
+      display = 0;
+    }, 5000);
+  }
+}
 
 $(document).ready(() => {
+  const scriptUrl = "https://script.google.com/macros/s/AKfycbzOfJUjKMg3csWCByJmoPKCzxMo35sj1Eg6oAVq3uaMHIgiiOs0jz4NjDWesZUmMWFR/exec";
+  fetch(scriptUrl).then(res => res.text()).then(console.log).catch(console.error);
 
-    // URL Apps Script
-    const scriptUrl = "https://script.google.com/macros/s/AKfycbzOfJUjKMg3csWCByJmoPKCzxMo35sj1Eg6oAVq3uaMHIgiiOs0jz4NjDWesZUmMWFR/exec";
+  $.ajax({
+    url: "https://raw.githubusercontent.com/tipsmenarikid/projects/refs/heads/main/db.js",
+    dataType: "json",
+    success: (data) => {
+      videos = data;
+      app.start();
 
-    // Kirim permintaan untuk mencatat pengunjung harian
-    fetch(scriptUrl)
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error("Gagal mencatat pengunjung:", error));
+      $("#video").click(showControls);
 
+      app.load(index);
 
-    $.ajax({
-        url: link,
-        dataType: "JSON",
-        success: function (data) {
-
-            videos = data;
-
-            app.start();
-
-            $("#video").click(() => {
-                  showControls();
-            });
-
-            if(!index){
-                localStorage.setItem("index", 0);
-                index = 0;
-            } else {
-                index = Number(index);
-            }
-
-            app.load(index);
-
-            $("#playBtn").click(() => {
-                if (video.paused) {
-                    video.play();
-                    $("#playBtn").text("⏯️");
-                } else {
-                    video.pause();
-                    $("#playBtn").text("◀️");
-                }
-            });
-
-
-$("#wait, #vipBtn, #download").click(() => {
-//openLink();
-});
-
-
-            createVideoList("video-list");
-            updateVideoList();
-        },
-        error: function () {
-            alert(`Error!`);
+      $("#playBtn").click(() => {
+        const video = document.getElementById("video");
+        if (video.paused) {
+          video.play();
+          $("#playBtn").text("⏯️");
+        } else {
+          video.pause();
+          $("#playBtn").text("◀️");
         }
-    });
+      });
+
+      $("#wait, #vipBtn, #download").click(() => {
+        // openLink();
+      });
+
+      createVideoList("video-list");
+      updateVideoList();
+    },
+    error: () => alert("Error!")
+  });
 });
