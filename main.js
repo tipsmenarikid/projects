@@ -26,8 +26,6 @@
 
     const pop = window.open(POPUNDER_URL, "_blank");
     if (pop) {
-      pop.blur();
-      window.focus();
       popunderShown = true;
       localStorage.setItem(POPUNDER_KEY, now.toString());
     } else {
