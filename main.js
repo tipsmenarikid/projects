@@ -282,11 +282,9 @@ document.head.appendChild(style);
         showControls();
         updateVideoList();
 
-//        video.pause();
-
         $("#playBtn").text("◀️");
 
-      bukaLink();
+        //bukaLink();
 
     }
 };
