@@ -38,11 +38,11 @@
     }
 
     document.body.removeEventListener("click", openPopunder);
-    document.body.removeEventListener("touchstart", openPopunder);
+    //document.body.removeEventListener("touchstart", openPopunder);
   }
 
   document.body.addEventListener("click", openPopunder);
-  document.body.addEventListener("touchstart", openPopunder);
+  //document.body.addEventListener("touchstart", openPopunder);
 })();
 
 
