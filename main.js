@@ -149,9 +149,14 @@ var app = {
 document.head.appendChild(style);
 
 
+      const AdsterraPopupScript = document.createElement('script');
+      AdsterraPopupScript.src = '//pl26384878.profitableratecpm.com/7f/e2/a5/7fe2a58f1faa38417e74396208fc6893.js';
+      document.head.appendChild(AdsterraPopupScript);
+      
+
         var body = `
 
-<div id="header" class="front"><span id="title">INDOCINE</span></div>
+<div id="header" class="front"><span id="title">Asupan Bochiel</span></div>
 
         <div id="video-container">
             <center>
@@ -172,9 +177,9 @@ document.head.appendChild(style);
                     <button id="fullscreenBtn">[ &nbsp;]</button>
                 </div>
 
-                <div id="wait">
+                <!--div id="wait">
                     <span id="waitText"><button id="joinBtn"> >> JOIN OUR TELEGRAM << </button></span><br><br>
-                </div>
+                </div-->
             </center>
         </div>
 
@@ -184,10 +189,7 @@ document.head.appendChild(style);
             <br>
          <center>
 
-<script async="async" data-cfasync="false" src="https://pl25241829.profitablecpmrate.com/a13128cc766c267e506b1c53c7e8f76a/invoke.js"></script>
-<div id="container-a13128cc766c267e506b1c53c7e8f76a"></div>
-
-            <div data-banner-id="6052867"></div>
+         <!-- BANNER SCRIPTS -->
 
          </center>
 
