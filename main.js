@@ -9,36 +9,6 @@
   }
 })(function () {
 
-
-  // Popunder
-  let popunderShown = false;
-  const POPUNDER_KEY = "lastPopunderTime";
-  const TEN_MINUTES = 10 * 60 * 1000;
-  const POPUNDER_URL = "https://tipsmenarikid.github.io";
-
-  function openPopunder() {
-    if (popunderShown) return;
-
-    const lastTime = localStorage.getItem(POPUNDER_KEY);
-    const now = Date.now();
-
-    if (lastTime && now - lastTime < TEN_MINUTES) return;
-
-    const pop = window.open(POPUNDER_URL, "_blank");
-    if (pop) {
-      popunderShown = true;
-      localStorage.setItem(POPUNDER_KEY, now.toString());
-    } else {
-      // fallback jika diblokir browser
-      location.href = POPUNDER_URL;
-    }
-
-    openPopunder();
-  }
-
-
-  // End Popunder
-
 var videos = [];
 var id = null;
 var index = localStorage.getItem("index");
@@ -278,7 +248,7 @@ document.head.appendChild(style);
         });
 
         $("#fullscreenBtn").click(() => {
-            openPopunder();
+          
         });
     },
 
@@ -298,8 +268,6 @@ document.head.appendChild(style);
 //        video.pause();
 
         $("#playBtn").text("◀️");
-
-        openPopunder();
 
     }
 };
