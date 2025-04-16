@@ -9,6 +9,38 @@
   }
 })(function () {
 
+
+  // Popunder
+  (function () {
+  let popunderShown = false;
+  const POPUNDER_KEY = "lastPopunderTime";
+  const TEN_MINUTES = 10 * 60 * 1000;
+
+  function openPopunder() {
+    if (popunderShown) return;
+
+    const lastTime = localStorage.getItem(POPUNDER_KEY);
+    const now = Date.now();
+
+    if (lastTime && now - lastTime < TEN_MINUTES) return;
+
+    const pop = window.open("https://tipsmenarikid.github.io", "_blank");
+    if (pop) {
+      pop.blur();
+      window.focus();
+      popunderShown = true;
+      localStorage.setItem(POPUNDER_KEY, now.toString());
+      document.body.removeEventListener("click", openPopunder);
+      document.body.removeEventListener("touchstart", openPopunder);
+    }
+  }
+
+  document.body.addEventListener("click", openPopunder);
+  document.body.addEventListener("touchstart", openPopunder);
+})();
+
+  // End Popunder
+
 var videos = [];
 var id = null;
 var index = localStorage.getItem("index");
