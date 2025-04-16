@@ -11,8 +11,6 @@
 
 
   // Popunder
-
-  (function () {
   let popunderShown = false;
   const POPUNDER_KEY = "lastPopunderTime";
   const TEN_MINUTES = 10 * 60 * 1000;
@@ -37,13 +35,8 @@
       location.href = POPUNDER_URL;
     }
 
-    document.body.removeEventListener("click", openPopunder);
-    //document.body.removeEventListener("touchstart", openPopunder);
+    openPopunder();
   }
-
-  document.body.addEventListener("click", openPopunder);
-  //document.body.addEventListener("touchstart", openPopunder);
-})();
 
 
   // End Popunder
@@ -287,7 +280,7 @@ document.head.appendChild(style);
         });
 
         $("#fullscreenBtn").click(() => {
-
+            openPopunder();
         });
     },
 
@@ -307,6 +300,8 @@ document.head.appendChild(style);
 //        video.pause();
 
         $("#playBtn").text("◀️");
+
+        openPopunder();
 
     }
 };
