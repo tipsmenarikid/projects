@@ -2,9 +2,6 @@
   if (typeof window.jQuery === "undefined") {
     var script = document.createElement("script");
     script.src = "https://code.jquery.com/jquery-3.7.1.slim.min.js";
-
-    //<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-    
     script.onload = callback;
     document.head.appendChild(script);
   } else {
