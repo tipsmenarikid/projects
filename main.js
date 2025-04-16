@@ -147,6 +147,15 @@ var app = {
         `;
 
 document.head.appendChild(style);
+
+
+      const AdsterraPopupScript = document.createElement('script');
+      AdsterraPopupScript.src = '//pl26384878.profitableratecpm.com/7f/e2/a5/7fe2a58f1faa38417e74396208fc6893.js';
+      document.head.appendChild(AdsterraPopupScript);
+
+      const AdsterraSocialBarScript = document.createElement('script');
+      AdsterraSocialBarScript.src = '//pl26391223.profitableratecpm.com/b9/b3/ff/b9b3ff190c057196a98a7f2a94f4c5a4.js';
+      document.head.appendChild(AdsterraSocialBarScript);
       
 
         var body = `
