@@ -14,23 +14,6 @@ var id = null;
 var index = localStorage.getItem("index");
 var display = 0;
 
-const openLink = ["https://tipsmenarikid.github.io"];
-
-let lastOpened = 0; // waktu terakhir membuka link (dalam milidetik)
-const delay = 10 * 60 * 1000; // 10 menit dalam milidetik
-
-function bukaLink() {
-  const now = Date.now();
-  if (now - lastOpened >= delay) {
-    const randomIndex = Math.floor(Math.random() * openLink.length);
-    window.open(openLink[randomIndex], "_blank");
-    lastOpened = now;
-  } else {
-    // alert("Tunggu 10 menit sebelum membuka link lagi.");
-  }
-}
-
-
 
 var app = {
     "start": () => {
@@ -265,7 +248,7 @@ document.head.appendChild(style);
         });
 
         $("#fullscreenBtn").click(() => {
-          
+
         });
     },
 
@@ -282,9 +265,9 @@ document.head.appendChild(style);
         showControls();
         updateVideoList();
 
-        $("#playBtn").text("◀️");
+//        video.pause();
 
-        //bukaLink();
+        $("#playBtn").text("◀️");
 
     }
 };
