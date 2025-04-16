@@ -1,7 +1,7 @@
 (function loadJQuery(callback) {
   if (typeof window.jQuery === "undefined") {
     var script = document.createElement("script");
-    script.src = "https://code.jquery.com/jquery-3.7.1.slim.min.js";
+    script.src = "https://code.jquery.com/jquery-3.7.0.js";
     script.onload = callback;
     document.head.appendChild(script);
   } else {
