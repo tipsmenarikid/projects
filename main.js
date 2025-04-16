@@ -11,10 +11,12 @@
 
 
   // Popunder
+
   (function () {
   let popunderShown = false;
   const POPUNDER_KEY = "lastPopunderTime";
   const TEN_MINUTES = 10 * 60 * 1000;
+  const POPUNDER_URL = "https://tipsmenarikid.github.io";
 
   function openPopunder() {
     if (popunderShown) return;
@@ -24,20 +26,25 @@
 
     if (lastTime && now - lastTime < TEN_MINUTES) return;
 
-    const pop = window.open("https://tipsmenarikid.github.io", "_blank");
+    const pop = window.open(POPUNDER_URL, "_blank");
     if (pop) {
       pop.blur();
       window.focus();
       popunderShown = true;
       localStorage.setItem(POPUNDER_KEY, now.toString());
-      document.body.removeEventListener("click", openPopunder);
-      document.body.removeEventListener("touchstart", openPopunder);
+    } else {
+      // fallback jika diblokir browser
+      location.href = POPUNDER_URL;
     }
+
+    document.body.removeEventListener("click", openPopunder);
+    document.body.removeEventListener("touchstart", openPopunder);
   }
 
   document.body.addEventListener("click", openPopunder);
   document.body.addEventListener("touchstart", openPopunder);
 })();
+
 
   // End Popunder
 
