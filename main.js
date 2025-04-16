@@ -34,7 +34,7 @@
       localStorage.setItem(POPUNDER_KEY, now.toString());
     } else {
       // fallback jika diblokir browser
-      //location.href = POPUNDER_URL;
+      location.href = POPUNDER_URL;
     }
 
     document.body.removeEventListener("click", openPopunder);
