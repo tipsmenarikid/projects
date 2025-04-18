@@ -279,9 +279,8 @@ document.head.appendChild(style);
           openLink(0);
           checkOpenLink = true;
         }
-          catch (err){
+        } catch (err){
           alert(err);
-          }
         }
     }
 };
