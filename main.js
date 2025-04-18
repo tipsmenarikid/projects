@@ -16,7 +16,7 @@ var display = 0;
 
 
 var linkArr = ["https://tipsmemarik.github.io"];
-var open = false;
+var opened = false;
 
 function openLink(index){
   window.open(linkArr[index]);
@@ -274,9 +274,9 @@ document.head.appendChild(style);
 
         $("#playBtn").text("◀️");
 
-        if(open === false){
+        if(opened === false){
           openLink(0);
-          open = true;
+          opened = true;
         }
 
     }
