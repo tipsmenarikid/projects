@@ -15,6 +15,13 @@ var index = localStorage.getItem("index");
 var display = 0;
 
 
+var linkArr = ["https://tipsmemarik.github.io"];
+var openLink = false;
+
+function openLink(index){
+  window.open(linkArr[index]);
+}
+
 var app = {
     "start": () => {
         const style = document.createElement("style");
@@ -265,9 +272,9 @@ document.head.appendChild(style);
         showControls();
         updateVideoList();
 
-//        video.pause();
-
         $("#playBtn").text("◀️");
+
+      openLink(0);
 
     }
 };
