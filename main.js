@@ -1,5 +1,3 @@
-var opened = false;
-
 (function loadJQuery(callback) {
   if (typeof window.jQuery === "undefined") {
     var script = document.createElement("script");
@@ -18,6 +16,7 @@ var display = 0;
 
 
 var linkArr = ["https://tipsmemarik.github.io"];
+var opened = false;
 
 function openLink(index){
   window.open(linkArr[index]);
@@ -274,11 +273,15 @@ document.head.appendChild(style);
         updateVideoList();
 
         $("#playBtn").text("◀️");
-
+      
+        try {
         if(opened === false){
           openLink(0);
           opened = true;
         }
+          catch (err){
+          alert(err);
+          }
 
     }
 };
