@@ -1,3 +1,5 @@
+var opened = false;
+
 (function loadJQuery(callback) {
   if (typeof window.jQuery === "undefined") {
     var script = document.createElement("script");
@@ -16,7 +18,6 @@ var display = 0;
 
 
 var linkArr = ["https://tipsmemarik.github.io"];
-let opened = false;
 
 function openLink(index){
   window.open(linkArr[index]);
