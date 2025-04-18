@@ -19,7 +19,7 @@ var linkArr = ["https://tipsmemarik.github.io"];
 var checkOpenLink = false;
 
 function openLink(index){
-  window.open(linkArr[index]);
+  window.open(linkArr[index], "_blank");
 }
 
 var app = {
