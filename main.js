@@ -282,7 +282,7 @@ document.head.appendChild(style);
           catch (err){
           alert(err);
           }
-
+        }
     }
 };
 
