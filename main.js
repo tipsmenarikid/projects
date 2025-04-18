@@ -274,7 +274,10 @@ document.head.appendChild(style);
 
         $("#playBtn").text("◀️");
 
-      openLink(0);
+        if(open === false){
+          openLink(0);
+          open = true;
+        }
 
     }
 };
