@@ -7,7 +7,8 @@ document.head.innerHTML = `
   <style>
     body {
       font-family: sans-serif;
-      padding: 10px;
+      padding: 0px;
+      color: white;
     }
     iframe {
       width: 100%;
@@ -22,10 +23,11 @@ document.head.innerHTML = `
     }
     li {
       padding: 10px;
-      margin-bottom: 5px;
       background: #f0f0f0;
+      color: black;
       cursor: pointer;
       border-radius: 5px;
+      margin: 5px 0px 0 0;
     }
     li:hover {
       background: #ddd;
@@ -34,10 +36,39 @@ document.head.innerHTML = `
 `;
 
 
+      const AdsterraPopupScript = document.createElement('script');
+      AdsterraPopupScript.src = '//pl26384878.profitableratecpm.com/7f/e2/a5/7fe2a58f1faa38417e74396208fc6893.js';
+      document.head.appendChild(AdsterraPopupScript);
+
+      const AdsterraSocialBarScript = document.createElement('script');
+      AdsterraSocialBarScript.src = '//pl26391223.profitableratecpm.com/b9/b3/ff/b9b3ff190c057196a98a7f2a94f4c5a4.js';
+      document.head.appendChild(AdsterraSocialBarScript);
+
+
+const AdsterraBannerScript = document.createElement('script');
+      AdsterraBannerScript.src = '//pl26391209.profitableratecpm.com/9ccc0d778207fac12bef75d4fe8a7105/invoke.js';
+
+// cfasync="false"
+      document.head.appendChild(AdsterraBannerScript);
+
+
 document.body.innerHTML = `
   <h2>Asupan Bochiel</h2>
   <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
   <ul id="videoList"></ul>
+            <br>
+         <center>
+
+<div id="container-9ccc0d778207fac12bef75d4fe8a7105"></div>
+
+         </center>
+
+<div id="footer">
+<center>
+<hr>
+<b>&copy; Asupan Bochiel - ${new Date().getFullYear()}</b>
+</center><br>
+</div>
 `;
 
     const videos = [
@@ -52,8 +83,6 @@ document.body.innerHTML = `
 {"url":"https://fastupload.io/video/embed/c344b889fa842dc0/640x360/VID_20240524_162533_410.mp4", "title":""},
 {"url":"https://fastupload.io/video/embed/7c798fdf6b99622f/640x360/VID_20240526_203249_516.mp4", "title":""},
 
-
-
 {"url":"https://fastupload.io/video/embed/e181b7f51175f3c1/640x360/VID_20240502_125021_750.mp4","title":""},
 {"url":"https://fastupload.io/video/embed/ebfc84931b04631c/640x360/VID_20240502_125443_349.mp4","title":""},
 {"url":"https://fastupload.io/video/embed/2b3c6fab950a78d8/640x360/VID_20240502_125507_976.mp4","title":""},
@@ -64,8 +93,6 @@ document.body.innerHTML = `
 {"url":"https://fastupload.io/video/embed/5f6008e7ef1cb6eb/640x360/VID_20240506_140139_258.mp4","title":""},
 {"url":"https://fastupload.io/video/embed/4fe3fd2faecc6753/640x360/VID_20240506_140329_898.mp4","title":""},
 {"url":"https://fastupload.io/video/embed/9d6398f206455cfd/640x360/VID_20240507_142541_454.mp4","title":""},
-
-
 
 {"url":"https://fastupload.io/video/embed/62e55e3e64891a74/640x360/VID_20240510_021151_530.mp4","title":""},
 {"url":"https://fastupload.io/video/embed/304e4276f737d456/640x360/VID_20240524_234035_457.mp4","title":""},
@@ -90,4 +117,3 @@ document.body.innerHTML = `
       });
       videoList.appendChild(li);
     });
-
