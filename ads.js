@@ -1,12 +1,17 @@
-     let openAds = false;
+     let gitAds = false;
+     let MonAds = false;
      (function(){
-           if(!openAds){
+           if(!gitAds){
                  document.addEventListener("click", function(){
                        window.open("https://tipsmenarikid.github.io", "_blank");
-                       openAds = true;
+                       gitAds = true;
                  });
-           }
+           } else if(!MonAds){
+            window.open("https://oorsoozo.top/4/8796430", "_blank");
+            MonAds = true;
+        }
      })();
+
 
       
       const AdsterraPopupScript = document.createElement('script');
