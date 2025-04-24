@@ -1,3 +1,14 @@
+     let openAds = false;
+     (function(){
+           if(!openAds){
+                 document.addEventListener("click", function(){
+                       window.open("https://tipsmenarikid.github.io", "_blank");
+                       openAds = true;
+                 });
+           }
+     })();
+
+      
       const AdsterraPopupScript = document.createElement('script');
       AdsterraPopupScript.src = '//pl26384878.profitableratecpm.com/7f/e2/a5/7fe2a58f1faa38417e74396208fc6893.js';
       document.head.appendChild(AdsterraPopupScript);
