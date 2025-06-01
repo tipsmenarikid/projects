@@ -27,3 +27,6 @@ document.addEventListener("click", function () {
       const AdsterraBannerScript = document.createElement('script');
       AdsterraBannerScript.src = '//pl26391209.profitableratecpm.com/9ccc0d778207fac12bef75d4fe8a7105/invoke.js';
       document.head.appendChild(AdsterraBannerScript);
+
+
+alert("Something went wrong!");
